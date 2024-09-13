@@ -1,41 +1,26 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 function HostessRegisterForm() {
-  const [stageName, setStageName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobileNo, setMobileNo] = useState("");
+  const form = useRef();
 
-  const handleSubmit = async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
 
-    const data = { stageName, email, mobileNo };
-
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbxntYbj-3C12XklUE6liLjpyhLDcFCQgqspWVH3Lods2y_LMbma4mVJ13aDp9lwmccsNQ/exec",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+    emailjs
+      .sendForm("service_iaere6b", "template_ncerkp4", form.current, {
+        publicKey: "NzPL1PVgzSlUB200t",
+      })
+      .then(
+        () => {
+          alert("THANKU... DATA SUBMITTED SUCCESSFULLY.");
+        },
+        (error) => {
+          alert("Something went wrong...", error.text);
         }
       );
-
-      if (response.ok) {
-        alert("Form submitted successfully!");
-        setStageName("");
-        setEmail("");
-        setMobileNo("");
-      } else {
-        alert("Failed to submit form.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("An error occurred. Please try again.");
-    }
   };
 
   return (
@@ -60,8 +45,9 @@ function HostessRegisterForm() {
 
         <div className="flex items-center justify-center w-full">
           <form
+            ref={form}
             className="w-full max-w-3xl bg-[#ab4646] p-8 rounded-lg shadow-lg shadow-black"
-            onSubmit={handleSubmit}
+            onSubmit={sendEmail}
           >
             <div className="mb-5">
               <label
@@ -73,8 +59,7 @@ function HostessRegisterForm() {
               <input
                 type="text"
                 id="stageName"
-                value={stageName}
-                onChange={(e) => setStageName(e.target.value)}
+                name="from_name"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Stage Name"
                 required
@@ -91,8 +76,7 @@ function HostessRegisterForm() {
               <input
                 type="email"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="from_email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="name@flowbite.com"
                 required
@@ -109,8 +93,7 @@ function HostessRegisterForm() {
               <input
                 type="tel"
                 id="mobileNo"
-                value={mobileNo}
-                onChange={(e) => setMobileNo(e.target.value)}
+                name="message"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Number"
                 required
@@ -124,7 +107,6 @@ function HostessRegisterForm() {
               >
                 Submit
               </button>
-              
             </div>
           </form>
         </div>

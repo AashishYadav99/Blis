@@ -6,22 +6,34 @@ import { MdPrivacyTip } from "react-icons/md";
 const Home = () => {
   const [showForm, setShowForm] = useState(false);
 
-  //   const handleAgencyRegisterClick = () => {
-  //     setShowForm(!showForm); // Toggle form visibility
-  //   };
-
   return (
     <div className="bg-gradient-to-b from-[#800000] to-[#F5F7F8] bg-fixed min-h-screen p-10 flex flex-col justify-between">
-      <div className="flex justify-end ">
-        <Link to="#">
-          <button
-            type="button"
-            className="text-white bg-red-700 hover:bg-red-500 focus:ring-2 focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 flex items-center space-x-2"
+      <div className="flex justify-between ">
+        <div>
+          <Link
+            to="https://drive.google.com/drive/folders/1ICYUMt0tUSKh2hGltU2pLQV9J8MabEFD?usp=drive_link
+"
           >
-            <MdPrivacyTip className="h-5 w-5 mr-2" />
-            Our Policy
-          </button>
-        </Link>
+            <button
+              type="button"
+              className="text-white bg-red-700 hover:bg-red-500 focus:ring-2 focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 flex items-center space-x-2"
+            >
+              {" "}
+              Download APK
+            </button>
+          </Link>
+        </div>
+        <div>
+          <Link to="#">
+            <button
+              type="button"
+              className="text-white bg-red-700 hover:bg-red-500 focus:ring-2 focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 flex items-center space-x-2"
+            >
+              <MdPrivacyTip className="h-5 w-5 mr-2" />
+              Our Policy
+            </button>
+          </Link>
+        </div>
       </div>
       <div className="text-center my-5">
         <div className="flex justify-center">

@@ -1,4 +1,3 @@
-// src/AgencyRegisterForm.js
 import { Link } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Swal from "sweetalert2";
@@ -17,10 +16,10 @@ function AgencyRegisterForm() {
       })
       .then(
         () => {
-          console.log("SUCCESS!");
+          alert("THANKU... DATA SUBMITTED SUCCESSFULLY.");
         },
         (error) => {
-          console.log("FAILED...", error.text);
+          alert("Something went wrong...", error.text);
         }
       );
   };
@@ -87,20 +86,19 @@ function AgencyRegisterForm() {
                 />
               </div>
 
-
               <div className="mb-5">
                 <label
-                  htmlFor="message"
+                  htmlFor="tel"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Message
+                  Mobile No
                 </label>
                 <input
-                  type="text"
-                  id="message"
+                  type="tel"
+                  id="number"
                   name="message"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="message"
+                  placeholder="Number"
                   required
                 />
               </div>
